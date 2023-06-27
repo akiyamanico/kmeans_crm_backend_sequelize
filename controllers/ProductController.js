@@ -15,7 +15,7 @@ export const getProductById = async(req, res)=>{
     try {
         const response = await Product.findOne({
             where:{
-                id : req.params.id
+                id_produk : req.params.id_produk
             }
         });
         res.json(response);
@@ -24,32 +24,30 @@ export const getProductById = async(req, res)=>{
     }
 }
  
-export const deleteProduct = async(req, res)=>{
-    const product = await Product.findOne({
-        where:{
-            id : req.params.id
-        }
-    });
-    if(!product) return res.status(404).json({msg: "No Data Found"});
- 
+export const deleteProduct = async (req, res) => {
     try {
-        const filepath = `./public/images/${product.image}`;
-        fs.unlinkSync(filepath);
         await Product.destroy({
-            where:{
-                id : req.params.id
+            where: {
+                id_produk : req.params.id_produk
             }
         });
-        res.status(200).json({msg: "Product Deleted Successfuly"});
+        res.json({
+            "message": "Product Deleted"
+        });
     } catch (error) {
-        console.log(error.message);
-    }
+        res.json({ message: error.message });
+    }  
 }
 
-export const saveProduct = (req, res)=>{
-   //TODO
-}
-
-export const updateProduct = async(req, res)=>{
-    //TODO
+export const updateProduct = async (req, res) => {
+  try {
+    await Product.update({
+        where: {
+            id_produk : req.params.id_produk
+        }
+    });
+    res.json({"message" : "Product Updated"});
+  } catch (error){
+    res.json ({message : error.message});
+  }
 }

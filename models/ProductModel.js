@@ -4,7 +4,7 @@ import db from "../config/Database.js";
 const {DataTypes} = Sequelize;
  
 const Product = db.define('produk',{
-     
+    id_produk : DataTypes.STRING,
     nama: DataTypes.STRING,
     id_kategori: DataTypes.STRING,
     stok: DataTypes.DOUBLE,

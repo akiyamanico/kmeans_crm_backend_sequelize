@@ -10,9 +10,9 @@ import {
 const routerproduct = express.Router();
  
 routerproduct.get('/produk', getProducts);
-routerproduct.get('/produk/:id', getProductById);
-// router.post('/products', saveProduct);
-// router.patch('/products/:id', updateProduct);
-// router.delete('/products/:id', deleteProduct);
+routerproduct.get('/produk/:id_produk', getProductById);
+router.post('/products', saveProduct);
+router.patch('/patch/:id_produk', updateProduct);
+router.delete('/products/:id_produk', deleteProduct);
  
 export default routerproduct;
